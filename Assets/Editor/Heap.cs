@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+
 public class Heap
 {
     public class Node : System.IComparable
@@ -20,7 +21,7 @@ public class Heap
 
     public int Count
     {
-        get{ return list_.Count;}
+        get { return list_.Count; }
     }
 
     public Heap()
@@ -41,13 +42,13 @@ public class Heap
 
     public Node pop_max()
     {
-        if(list_.Count<=0) {
+        if(list_.Count <= 0) {
             return null;
         }
 
         Node node = list_[0];
-        swap(0, list_.Count-1);
-        list_.RemoveAt(list_.Count-1);
+        swap(0, list_.Count - 1);
+        list_.RemoveAt(list_.Count - 1);
         downheap(0);
         node.index_ = -1;
         return node;
@@ -57,9 +58,9 @@ public class Heap
     {
         float oldError = node.error_;
         node.error_ = newError;
-        if(oldError<newError) {
+        if(oldError < newError) {
             upheap(node.index_);
-        } else if(newError<oldError) {
+        } else if(newError < oldError) {
             downheap(node.index_);
         }
     }
@@ -75,9 +76,9 @@ public class Heap
 
     private void upheap(int index)
     {
-        while(0<index) {
-            int parent = (index-1)>>1;
-            if(list_[parent].error_<list_[index].error_) {
+        while(0 < index) {
+            int parent = (index - 1) >> 1;
+            if(list_[parent].error_ < list_[index].error_) {
                 swap(parent, index);
                 index = parent;
             } else {
@@ -88,15 +89,15 @@ public class Heap
 
     private void downheap(int index)
     {
-        while(index<list_.Count) {
-            int left = (index<<1)+1;
-            if(list_.Count<=left) {
+        while(index < list_.Count) {
+            int left = (index << 1) + 1;
+            if(list_.Count <= left) {
                 return;
             }
 
-            int right = left+1;
-            if(list_.Count<=right) {
-                if(list_[index].error_<list_[left].error_) {
+            int right = left + 1;
+            if(list_.Count <= right) {
+                if(list_[index].error_ < list_[left].error_) {
                     swap(left, index);
                     index = left;
                 } else {
@@ -104,8 +105,8 @@ public class Heap
                 }
 
             } else {
-                int child = (list_[left].error_<list_[right].error_)? right : left;
-                if(list_[index].error_<list_[child].error_) {
+                int child = (list_[left].error_ < list_[right].error_) ? right : left;
+                if(list_[index].error_ < list_[child].error_) {
                     swap(child, index);
                     index = child;
                 } else {

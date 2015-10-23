@@ -31,8 +31,10 @@ class Importer16bitTexture : AssetPostprocessor
             return;
         }
 
-        ErrorDifusion errorDiffusion = new ErrorDifusion();
-        errorDiffusion.convert(texture);
+        //ErrorDifusion errorDiffusion = new ErrorDifusion();
+        //errorDiffusion.convert(texture);
+        EfficientErrorDiffusion.convert(texture);
+        //FloydSteinbergErrorDiffusion.convert(texture);
 
         EditorUtility.CompressTexture(texture, TextureFormat.RGBA4444, TextureCompressionQuality.Best);
 
@@ -42,3 +44,4 @@ class Importer16bitTexture : AssetPostprocessor
         importer.textureFormat = TextureImporterFormat.Automatic16bit;
     }
 }
+
